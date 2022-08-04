@@ -178,6 +178,6 @@ export default {
   color: red;
 }
 .Fundoo_logo{
-  font-size     : 50px;
+  font-size     : 20px;
 }
 </style>

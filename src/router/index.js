@@ -6,8 +6,11 @@ import LoginUser from '../views/LoginUser.vue'
 import ForgetPass from '../views/Forget.vue'
 import ResetPass from '../views/Reset.vue'
 import DashbordBar from '../views/Dashbord.vue'
-import GetNotes from '../views/GetNote.vue'
-import NavigationBar from '../views/NavigationBar.vue'
+import GetAllNotes from '../views/GetNote.vue'
+
+
+
+
 
 Vue.use(VueRouter)
 
@@ -36,6 +39,7 @@ const routes = [
     name: 'LoginUser',
     component: LoginUser
   },
+  
   {
     path: '/forget',
     name: 'ForgetPass',
@@ -50,22 +54,19 @@ const routes = [
     path: '/dashbordbar',
     name: 'DashbordBar',
     component: DashbordBar,
-    childen:[
+    children:[
       {
       name: 'GetAllNotes',
       path: '/',
-      component: GetNotes
+      component: GetAllNotes
       }
     ]
   
   },
   
-    {
-      name: 'NavigationBar',
-      path: '/navigation',
-      component: NavigationBar
-    },
-  
+   
+
+   
 
   
 

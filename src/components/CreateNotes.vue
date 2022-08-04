@@ -1,73 +1,103 @@
 <template>
-    <v-overlap>
-        <div class="main_Note_box">
-            <v-container class="CreateNew">
-                <v-card elevation="10" class="mx-auto pl-3" height="150" width="568">
-                    <v-text-field placeholder="Title" pl-3 v-model="noteDetails.Title" solo flat hide-details>
+    <div class="main_Note_box">
+        <v-container class="CreateNew">
+            <v-card v-if="!show" @click="open" elevation="10" class="mx-auto pl-3" height="50" width="800">
+                <div class="buttons">
+                    <v-text-field placeholder="take a note.." pl-3 v-model="noteDetails.title" solo flat hide-details>
                     </v-text-field>
-                    <v-text-field placeholder="take a note.." class="pt-0" v-model="noteDetails.Descreption" solo flat
-                        hide-details></v-text-field>
-                    <v-card class="functionity_setup" elevation="0">
-                        <v-card class="CN_Functions mx-auto" elevation="0">
-                            <v-list>
-                                <v-list-item-group link flat>
-                                    <v-icon class="px-3 ma-0">mdi-bell-plus</v-icon>
-                                    <v-icon class="px-3 ma-0">mdi-account-plus</v-icon>
-                                    <v-icon class="px-3 ma-0">mdi-palette</v-icon>
-                                    <v-icon class="px-3 ma-0">mdi-image-plus</v-icon>
-                                    <v-icon class="px-3 ma-0">mdi-package-down</v-icon>
-                                    <v-icon class="px-3 ma-0">mdi-dots-vertical</v-icon>
-                                    <v-icon class="px-3 ma-0">mdi-undo</v-icon>
-                                    <v-icon class="px-3 ma-0">mdi-redo</v-icon>
-                                </v-list-item-group>
-                            </v-list>
-                        </v-card>
-                        <v-btn small color="white" elevation="0" @click="CreateNotes()">close</v-btn>
-                    </v-card>
-                </v-card>
+                    <div class="button"><button class="iconbutton"
+                            style="border: none; margin-left: 20px; margin-right: 20px;"><img
+                                class="takenoteicons" src='../assets/check_box.svg'></button>
+                        <button class="iconbutton" style="border: none; margin-right: 20px"><img class="takenoteicons"
+                                src='../assets/brush.svg'>
+                        </button>
+                        <button class="iconbutton" style="border: none; margin-right: -350px"><img class="takenoteicons"
+                                src='../assets/image.svg'>
+                        </button>
+                    </div>
 
-            </v-container>
-        </div>
-    </v-overlap>
+                </div>
+            </v-card>
+            <v-card v-if="show">
+                <div>
+                    <v-text-field placeholder="Title" class="pt-0" v-model="noteDetails.title" solo flat hide-details>
+                    </v-text-field>
+
+                    <v-text-field placeholder="take a note.." class="pt-0" v-model="noteDetails.descreption" solo flat
+                        hide-details></v-text-field>
+                    <!-- <button class="pinbutton" style="border: none"><img src='../assets/push_pin.svg'></button> -->
+
+                    <div class="ft">
+                        <NoteIcons></NoteIcons>
+                        
+                        <v-btn small color="white" elevation="0" @click="CreateNotes()">close</v-btn>
+                    </div>
+
+
+                </div>
+            </v-card>
+
+
+
+        </v-container>
+    </div>
 </template>
 <script>
-import { CreateNotes } from '../services/UserService'
+import { CreateNotes } from '../services/NoteService'
+import NoteIcons from '@/components/iconNote.vue'
 export default {
     name: 'CreatingNotes',
+    components: { NoteIcons },
+
     data() {
+
         return {
             noteDetails: {
-                Title: '',
-                Descreption: ''
-            }
+                title: '',
+                descreption: '',
+
+
+                // getAllNotes: ''
+            },
+            show: false,
         }
     },
     methods: {
+        open() {
+            this.show = !this.show
+        },
         CreateNotes() {
-            console.log(this.Title)
-            console.log(this.Descreption)
+            console.log(this.noteDetails.title)
+            console.log(this.noteDetails.descreption)
+            //  console.log(this.show)
 
             let reqData = {
-                Title: this.title,
-                Descreption: this.descreption
+                title: this.noteDetails.title,
+                description: this.noteDetails.descreption
             }
+            this.show = !this.show
 
             console.log(reqData)
             CreateNotes(reqData).then((responce) => {
                 console.log(responce);
+
             }).catch((error) => {
                 console.log(error);
             })
         }
-    }
+    },
+
+
 }
+
+
 </script>
 
 <style scoped>
 .main_Note_box {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+
     align-items: flex-start;
 }
 
@@ -79,7 +109,8 @@ export default {
 
 .functionity_setup {
     display: flex;
-    flex-direction: row;
+
+
     justify-content: space-between;
     align-items: baseline;
 }
@@ -90,5 +121,65 @@ export default {
     padding-top: -50px;
     padding-left: 450px;
     padding-bottom: 100px;
+}
+
+.iconbutton {
+    /* left: 10px; */
+    margin-bottom: 1px;
+    /* top: 1000px; */
+    margin-top: -100px;
+    /* padding-bottom: 30px;  */
+
+
+}
+
+.takenoteicons {
+
+    width: 25px;
+    height: 22px;
+    opacity: 0.56;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+
+}
+
+.ft {
+     display: flex;
+    flex-direction: row; 
+    
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.CreateNew {
+    width: 550px;
+    margin-left: 300px;
+    margin-top: 40px;
+
+}
+
+.pinbutton {
+    width: 25px;
+    height: 5px;
+    opacity: 0.54;
+    border: none;
+    background-color: transparent;
+    left: 100px;
+
+    margin-top: 0px;
+}
+.button{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 30px;
+
 }
 </style>

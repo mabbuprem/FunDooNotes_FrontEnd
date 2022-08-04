@@ -64,23 +64,27 @@
                                 </v-list-item>
                             </v-list-item-group>
                         </v-list>
+                        
                     </v-navigation-drawer>
-                    <v-content style="height: 300px">
-                        <div class="note">
+                    
+                    <v-content >
+                        <!-- <div class="note">
                             create note
-                        </div>
-                        <router-view></router-view>
+                        </div> -->
+                        
+                      <router-view></router-view>
                     </v-content>
                     <div></div>
                 </v-card>
-                
-                
             </v-col>
         </v-row>
+        
     </div>
+    
 </template>
 
 <script>
+
 export default {
     name: "DashbordUI",
     data: () => ({

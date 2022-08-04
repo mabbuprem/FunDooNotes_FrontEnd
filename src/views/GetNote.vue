@@ -1,19 +1,20 @@
 <template>
   <div class="home">
-    <CreateNotes></CreateNotes>
-    <DisplayNotesVue></DisplayNotesVue>
+<GetAllNotes></GetAllNotes>
+
   </div>
 </template>
 
 <script>
-import DisplayNotesVue from '@/components/DisplayNotes.vue'
+import GetAllNotes from '@/components/GetAllNotes.vue'
 // @ is an alias to /src
-import CreateNotes from '../components/CreateNotes.vue'
+
 export default {
   name: 'GetNotes',
   components: {
-    CreateNotes,
-    DisplayNotesVue
+    GetAllNotes
+ 
+
   }
 }
 </script>

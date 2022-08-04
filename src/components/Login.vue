@@ -92,6 +92,7 @@ export default {
             console.log(reqData)
             login(reqData).then((responce) => {
                 console.log(responce);
+                localStorage.setItem("token",responce. data.token);
             }).catch((error) => {
                 console.log(error);
             })
