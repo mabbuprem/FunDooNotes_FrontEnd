@@ -21,17 +21,20 @@
             <v-card v-if="show">
                 <div>
                     <v-text-field placeholder="Title" class="pt-0" v-model="noteDetails.title" solo flat hide-details>
+                    
                     </v-text-field>
+                    <!-- <div><button class="pinbutton" style="border: none"><img src='../assets/push_pin.svg'></button></div> -->
+                    
 
                     <v-text-field placeholder="take a note.." class="pt-0" v-model="noteDetails.descreption" solo flat
                         hide-details></v-text-field>
-                    <!-- <button class="pinbutton" style="border: none"><img src='../assets/push_pin.svg'></button> -->
+                    
 
                     <div class="ft">
                         <NoteIcons></NoteIcons>
-                        
-                        <v-btn small color="white" elevation="0" @click="CreateNotes()">close</v-btn>
+                        <v-btn class="prem" small color="white" elevation="0" @click="CreateNotes()">close</v-btn>
                     </div>
+                   
 
 
                 </div>
@@ -148,14 +151,17 @@ export default {
 }
 
 .ft {
-     display: flex;
-    flex-direction: row; 
+    /* display: flex;
+    flex-direction: row;   */
     
-    justify-content: space-between;
-    padding-left: 30px;
-    padding-right: 100px;
-    margin-top: 10px;
+     justify-content: space-between; 
+      padding-left: 30px; 
+    padding-right: 100px; 
+    margin-top: -1px;
     margin-right: 10px;
+    width:400px;
+    
+
 }
 
 .CreateNew {
@@ -166,14 +172,21 @@ export default {
 }
 
 .pinbutton {
-    width: 25px;
-    height: 5px;
+    width: -25px;
+    height: 1px;
     opacity: 0.54;
     border: none;
     background-color: transparent;
-    left: 100px;
+    /* left: 200px;
+    right:100px; */
 
     margin-top: 0px;
+
+    /* left: 10px; */
+    margin-bottom: 1px;
+    /* top: 1000px; */
+    margin-top: -100px;
+    /* padding-bottom: 30px;  */
 }
 .button{
     display: flex;
@@ -182,4 +195,21 @@ export default {
     margin-top: 30px;
 
 }
+
+.prem{
+    margin-left: 280px;
+   top:-20px;
+}
+
+/* .click{
+
+    margin-top: 0px;
+    right: 100px;
+    padding-left: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    top:30px;
+   
+} */
 </style>

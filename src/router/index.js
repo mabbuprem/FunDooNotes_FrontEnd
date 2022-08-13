@@ -7,6 +7,7 @@ import ForgetPass from '../views/Forget.vue'
 import ResetPass from '../views/Reset.vue'
 import DashbordBar from '../views/Dashbord.vue'
 import GetAllNotes from '../views/GetNote.vue'
+import Dialog from '../views/DialogBox.vue'
 
 
 
@@ -62,6 +63,12 @@ const routes = [
       }
     ]
   
+  },
+
+  {
+    path: '/Dialogbox',
+    name: 'Dialog',
+    component: Dialog
   },
   
    

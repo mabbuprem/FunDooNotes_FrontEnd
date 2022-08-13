@@ -67,6 +67,16 @@ export function GetAllNotes(reqData) {
   return getService('/getAllNotes', reqData, false, authOption)
 }
 
+// export function Updatenotes(reqData) {
+//   let authOption = {
+//     headers: {
+//       'Authorization': 'token',
+//       'content-Type': 'application/json'
+//     }
+//   }
+//   return postService('/updateNoteById', reqData, false, authOption)
+// }
+
 
 
 

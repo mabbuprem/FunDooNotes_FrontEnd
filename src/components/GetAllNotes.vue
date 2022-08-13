@@ -34,6 +34,7 @@ export default {
                 console.log(responce);
                 this.NotesArray = responce.data.notes
                 console.log(this.NotesArray)
+                this.NotesArray.reverse()
             }).catch((error) => {
                 console.log(error);
             })

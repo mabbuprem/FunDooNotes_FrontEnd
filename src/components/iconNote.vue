@@ -22,8 +22,12 @@ export default {
  display: flex;
 flex-direction: row;
 justify-content: space-between;
+border-radius: 50%;
 
 margin-right: 20px;
+/* margin-bottom: 10px; */
+/* margin-top: -5px; */
+gap:3px;
 
 }
 </style>

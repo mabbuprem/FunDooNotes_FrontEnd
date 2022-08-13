@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-card class="navigation_bar">
-            <v-app-bar color="deep-purple accent-4" >
+            <v-app-bar color="deep-purple accent-4">
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 <img class="mr-3" :src="require('../assets/keep_logo.png')" height="35" />
                 <v-toolbar-title>Fundoo</v-toolbar-title>
@@ -25,7 +25,9 @@
                 </div>
                 <div>
                     <v-spacer>
+
                         <img style="width:30px" class="ma-3" :src="require('../assets/account_circle.svg')" />
+
                     </v-spacer>
                 </div>
 
@@ -64,23 +66,23 @@
                                 </v-list-item>
                             </v-list-item-group>
                         </v-list>
-                        
+
                     </v-navigation-drawer>
-                    
-                    <v-content >
+
+                    <v-content>
                         <!-- <div class="note">
                             create note
                         </div> -->
-                        
-                      <router-view></router-view>
+
+                        <router-view></router-view>
                     </v-content>
                     <div></div>
                 </v-card>
             </v-col>
         </v-row>
-        
+
     </div>
-    
+
 </template>
 
 <script>
@@ -140,9 +142,10 @@ export default {
     padding: 0;
     margin: 0;
 }
-.note{
-     width: 1000px;
-     /* padding-bottom: 100px;
+
+.note {
+    width: 1000px;
+    /* padding-bottom: 100px;
      padding-right: 100px;
     padding-left: 100px;  */
     padding-top: 100px;

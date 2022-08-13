@@ -93,6 +93,7 @@ export default {
             login(reqData).then((responce) => {
                 console.log(responce);
                 localStorage.setItem("token",responce. data.token);
+                this.$router.push({path:'/dashbordbar'})
             }).catch((error) => {
                 console.log(error);
             })
