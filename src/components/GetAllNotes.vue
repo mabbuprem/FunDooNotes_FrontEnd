@@ -24,7 +24,8 @@ export default {
     },
     data() {
         return {
-            NotesArray: []
+            NotesArray: [],
+            // NotesArrayfilterlist:[]
         }
     },
     methods: {
@@ -32,18 +33,23 @@ export default {
             console.log('GetAllNotes called')
             GetAllNotes().then((responce) => {
                 console.log(responce);
-                this.NotesArray = responce.data.notes
-                console.log(this.NotesArray)
+                //  this.NotesArrayfilterlist = responce.data.notes
+                let bigCities = responce.data.notes.filter(function (e) {
+                    return e.archive != 1;
+                });
+                console.log(bigCities);
+                this.NotesArray = bigCities
+                 console.log(this.NotesArray)
                 this.NotesArray.reverse()
             }).catch((error) => {
                 console.log(error);
             })
         },
-       
+
     },
-     mounted() {
-            this.GetAllListNotes()
-        }
+    mounted() {
+        this.GetAllListNotes()
+    }
 }
 
 

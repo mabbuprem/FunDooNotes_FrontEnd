@@ -9,3 +9,7 @@ export  function postService(url, reqpayload, token, httpAuthOptions) {
 export function getService(url, token,httpAuthOptions) {
   return axios.get(BaseUrl + url, token && httpAuthOptions)
 }
+
+export function deleteService(url, token,httpAuthOptions) {
+  return axios.delete(BaseUrl + url, token && httpAuthOptions)
+}

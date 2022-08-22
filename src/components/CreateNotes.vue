@@ -23,25 +23,16 @@
                     <v-text-field placeholder="Title" class="pt-0" v-model="noteDetails.title" solo flat hide-details>
                     
                     </v-text-field>
-                    <!-- <div><button class="pinbutton" style="border: none"><img src='../assets/push_pin.svg'></button></div> -->
+                    <!-- <div class="pinbutton"><button  style="border: none"><img src='../assets/push_pin.svg'></button></div> -->
                     
-
                     <v-text-field placeholder="take a note.." class="pt-0" v-model="noteDetails.descreption" solo flat
                         hide-details></v-text-field>
-                    
-
                     <div class="ft">
                         <NoteIcons></NoteIcons>
                         <v-btn class="prem" small color="white" elevation="0" @click="CreateNotes()">close</v-btn>
                     </div>
-                   
-
-
                 </div>
             </v-card>
-
-
-
         </v-container>
     </div>
 </template>
@@ -89,6 +80,8 @@ export default {
             })
         }
     },
+    
+
 
 
 }
@@ -100,6 +93,7 @@ export default {
 .main_Note_box {
     display: flex;
     flex-direction: row;
+    right: 50px;
 
     align-items: flex-start;
 }
@@ -172,21 +166,11 @@ export default {
 }
 
 .pinbutton {
-    width: -25px;
-    height: 1px;
-    opacity: 0.54;
-    border: none;
-    background-color: transparent;
-    /* left: 200px;
-    right:100px; */
+     /* display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px; */
 
-    margin-top: 0px;
-
-    /* left: 10px; */
-    margin-bottom: 1px;
-    /* top: 1000px; */
-    margin-top: -100px;
-    /* padding-bottom: 30px;  */
 }
 .button{
     display: flex;

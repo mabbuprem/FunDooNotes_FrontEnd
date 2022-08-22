@@ -1,31 +1,35 @@
 <template>
     <v-dialog v-model="show" max-width="500px">
-        <v-card>
-            <div>
-                <input type="text" v-model="title">
+        <v-card style="height: 180px">
+            <div style="text-align: left; padding-left: 20px;">
                 {{ NoteData.title }}
+                <input type="text"  v-model="title" />
             </div>
-            <div>
-                <input type="text" v-model="description">
-                {{ NoteData.descreption }}
+            <div style="text-align: left; padding-left: 20px;">
+                {{ NoteData.description  }}
+                <input type="text" v-model="description" />
             </div>
-            <div>
-                <input type="text" v-model="id">
-                {{NoteData.id}}
+            <div class="iconns">
+                <NoteIcons v-bind:NoteObject="NoteData">
+                </NoteIcons>
             </div>
-            <v-card-actions>
-                <v-btn color="primary" @click.stop="show = false" @click="submit">Close</v-btn>
-            </v-card-actions>
+            <div class="btn_in_update">
+                <v-card-actions>
+                    <v-btn color="solid" @click.stop="show = false" @click="submit">Close</v-btn>
+                </v-card-actions>
+            </div>
         </v-card>
-
     </v-dialog>
 </template>
 
 <script>
 import { UpdateNotes } from '../services/NoteService'
+import NoteIcons from '@/components/iconNote.vue'
 export default {
     name: 'DialogueNote',
-
+    components: {
+        NoteIcons
+    },
     data() {
         return {
 
@@ -50,14 +54,14 @@ export default {
             let reqData = {
                 title: this.title,
                 description: this.description,
-                id: this.id
+                id: this.NoteData.id
 
             }
 
             console.log(reqData)
             UpdateNotes(reqData).then((responce) => {
                 console.log(responce);
-                
+
 
             }).catch((error) => {
                 console.log(error);
@@ -97,4 +101,29 @@ export default {
 </script>
 
 <style scoped>
+.btn_in_update {
+    padding-left: 400px;
+    margin-top: -50px;
+
+}
+
+.iconns {
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    /* margin-right: 25px; */
+    padding-top: 65px;
+    padding-left: 5px;
+    padding-bottom: 10px;
+    margin-top: 2px;
+}
+
+.description_txt {
+    margin-left: -160px;
+}
+
+.title_text {
+    margin-left: -160px;
+    padding-top: 10px;
+}
 </style>

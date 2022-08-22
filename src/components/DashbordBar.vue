@@ -1,14 +1,14 @@
 <template>
     <div>
         <v-card class="navigation_bar">
-            <v-app-bar color="deep-purple accent-4">
+            <v-app-bar >
                 <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
                 <img class="mr-3" :src="require('../assets/keep_logo.png')" height="35" />
                 <v-toolbar-title>Fundoo</v-toolbar-title>
                 <v-spacer>
                 </v-spacer>
                 <v-col cols="7">
-                    <v-text-field solo label="Search" prepend-inner-icon="mdi-magnify" hide-details></v-text-field>
+                    <v-text-field @click="Search()" solo label="Search" prepend-inner-icon="mdi-magnify" hide-details ></v-text-field>
                 </v-col>
 
                 <v-spacer>
@@ -42,7 +42,7 @@
                             <v-list-item-group tile flat>
                                 <v-list-item color="yellow darken-2">
                                     <v-icon class="ml-2 mr-6">mdi-lightbulb</v-icon>
-                                    <v-list-item-title>Notes</v-list-item-title>
+                                    <v-list-item-title  @click="getnotes()">Notes</v-list-item-title>
                                 </v-list-item>
 
                                 <v-list-item color="yellow darken-2">
@@ -57,49 +57,116 @@
 
                                 <v-list-item color="yellow darken-2">
                                     <v-icon class="ml-2 mr-6">mdi-package-down</v-icon>
-                                    <v-list-item-title>Archive</v-list-item-title>
+                                    <v-list-item-title @click="getallarchivenote()">Archive</v-list-item-title>
                                 </v-list-item>
 
                                 <v-list-item color="yellow darken-2">
                                     <v-icon class="ml-2 mr-6">mdi-delete</v-icon>
-                                    <v-list-item-title>Trash</v-list-item-title>
+                                    <v-list-item-title @click="Trash()">Trash</v-list-item-title>
                                 </v-list-item>
                             </v-list-item-group>
                         </v-list>
-
                     </v-navigation-drawer>
-
                     <v-content>
-                        <!-- <div class="note">
-                            create note
-                        </div> -->
-
                         <router-view></router-view>
                     </v-content>
                     <div></div>
                 </v-card>
             </v-col>
         </v-row>
-
     </div>
-
 </template>
 
 <script>
+   import {getAllTrashedNotes} from '@/services/NoteService';
+  import { getallarchiveNoteById } from '@/services/NoteService';
+  import { searchNotes } from '@/services/NoteService';
+   import { GetAllNotes } from '@/services/NoteService';
 
 export default {
     name: "DashbordUI",
     data: () => ({
         drawer: false,
         group: null,
+        id: '',
+         search: '',
+        NotesArray: []
     }),
+     props: {
+        
+       noteId:Number
+    },
 
     watch: {
         group() {
             this.drawer = false
         },
     },
+    methods: {
+       Trash() {
+            console.log("calling Trash function");
+            //  console.log(this.noteId)
+
+            getAllTrashedNotes().then((responce) => {
+                console.log(responce);
+                this.NotesArray = responce.data.notes 
+            }).catch((error) => {
+                console.log(error);
+            })
+        
+        },
+        getallarchivenote() {
+            console.log("calling getallarchive notes");
+            //  console.log(this.noteId)
+
+            getallarchiveNoteById().then((responce) => {
+                console.log(responce);
+                this.NotesArray = responce.data.notes 
+            }).catch((error) => {
+                console.log(error);
+            })
+        },
+        Search() {
+            console.log("calling search function");
+            // console.log(this.search)
+            let reqData = {
+                 search: this.search
+            }
+            console.log(reqData)
+            searchNotes(reqData).then((responce) => {
+                console.log(responce);
+            }).catch((error) => {
+                console.log(error);
+            })
+        },
+        getnotes() {
+            console.log('GetAllNotes called')
+            GetAllNotes().then((responce) => {
+                console.log(responce);
+                //  this.NotesArrayfilterlist = responce.data.notes
+                let bigCities = responce.data.notes.filter(function (e) {
+                    return e.archive != 1;
+                });
+                console.log(bigCities);
+                this.NotesArray = bigCities
+                //  console.log(this.NotesArray)
+                this.NotesArray.reverse()
+            }).catch((error) => {
+                console.log(error);
+            })
+    },
 }
+}
+    
+
+     
+
+    
+
+
+      
+    
+ 
 </script>
 <style scoped>
 .navigation_bar {

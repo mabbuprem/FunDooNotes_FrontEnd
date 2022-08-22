@@ -8,6 +8,7 @@ import ResetPass from '../views/Reset.vue'
 import DashbordBar from '../views/Dashbord.vue'
 import GetAllNotes from '../views/GetNote.vue'
 import Dialog from '../views/DialogBox.vue'
+import ApplicationUI from '../views/ApplicecationView.vue'
 
 
 
@@ -69,6 +70,12 @@ const routes = [
     path: '/Dialogbox',
     name: 'Dialog',
     component: Dialog
+  },
+
+  {
+    path: '/application',
+    name: 'ApplivationUI',
+    component: ApplicationUI
   },
   
    
